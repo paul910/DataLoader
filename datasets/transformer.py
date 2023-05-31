@@ -28,8 +28,12 @@ class TransformerBuilder(object):
             num_decoder_layers=6,
             dropout_p=0.1,
             padding_token=self.PAD_TOK)
-
-        self.model = transformer.cuda() if device.type == "cuda" else transformer.cpu()
+        if device.type == "cuda":
+            self.model = transformer.cuda()
+            self.model.load_state_dict(torch.load(self.params["model_file"]))
+        else:
+            self.model = transformer.cpu()
+            self.model.load_state_dict(torch.load(self.params["model_file"], map_location=torch.device('cpu')))
         self.model.eval()
 
     def build_model(self):
