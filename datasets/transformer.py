@@ -11,7 +11,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 class TransformerBuilder(object):
-    def __init__(self, params, overwrite_cache=False):
+    def __init__(self, params):
         self.params = params
         self.tokenizer = tokenizers.Tokenizer.from_pretrained("Salesforce/codegen-350M-multi")
         self.tokenizer.add_special_tokens(["<|startoftext|>", "<|pad|>"])

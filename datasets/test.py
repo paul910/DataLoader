@@ -5,6 +5,7 @@ import os
 import pickle
 import random
 import traceback
+import pathlib
 from collections import defaultdict
 from typing import List, Tuple
 
@@ -29,6 +30,13 @@ class VulnerabilityDataset(Dataset):
         self.overwrite_cache = params["overwrite_cache"]
         self.bounds = params.get("encode_bounds", False)
         self.max_seq_len = params.get("max_seq_len", None)
+               
+        os.makedirs('test/')
+
+        # Now create a file in this new directory.
+        with open('test/file.txt', 'w') as file:
+            file.write('Hello, world!')
+        
 
         if not os.path.exists(self.cache_dir):
             os.mkdir(self.cache_dir)
@@ -260,7 +268,7 @@ class VulnerabilityDataset(Dataset):
                 cwes[cwe].append(graph_id["graph_id"])
 
         return cwes
-    
+
     def split(self, factor=0.8) -> Tuple[Subset, Subset]:
         assert factor > 0
         assert factor < 1
