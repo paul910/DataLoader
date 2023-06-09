@@ -4,7 +4,7 @@ PARAMS = {
     "cache_dir": "REVEAL",
     "encoding_params": {
         "vector_size": 128,
-        "model_file": "model/transformer_model.chkpt"
+        "model_file": "transformer/transformer_model.chkpt"
     },
     "max_seq_len": 4096,
     "overwrite_cache": False
